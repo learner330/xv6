@@ -32,7 +32,7 @@ exit();
   2d:	e8 83 02 00 00       	call   2b5 <exit>
   32:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
 }
-printf(1, "year%d-month%d day%d hour%d:minute%d:second%d\n", r.month, r.day, r.year, r.hour, r.minute, r.second);
+printf(1, "month%d-day%d year%d hour%d:minute%d:second%d\n", 
   38:	8b 44 24 28          	mov    0x28(%esp),%eax
   3c:	c7 44 24 04 88 07 00 	movl   $0x788,0x4(%esp)
   43:	00 
@@ -49,6 +49,7 @@ printf(1, "year%d-month%d day%d hour%d:minute%d:second%d\n", r.month, r.day, r.y
   6f:	8b 44 24 38          	mov    0x38(%esp),%eax
   73:	89 44 24 08          	mov    %eax,0x8(%esp)
   77:	e8 84 03 00 00       	call   400 <printf>
+r.month, r.day, r.year, r.hour, r.minute, r.second);
 exit();
   7c:	e8 34 02 00 00       	call   2b5 <exit>
   81:	66 90                	xchg   %ax,%ax
@@ -435,132 +436,106 @@ memmove(void *vdst, const void *vsrc, int n)
  2ac:	c3                   	ret    
 
 000002ad <fork>:
-  name: \
-    movl $SYS_ ## name, %eax; \
-    int $T_SYSCALL; \
-    ret
-
-SYSCALL(fork)
  2ad:	b8 01 00 00 00       	mov    $0x1,%eax
  2b2:	cd 40                	int    $0x40
  2b4:	c3                   	ret    
 
 000002b5 <exit>:
-SYSCALL(exit)
  2b5:	b8 02 00 00 00       	mov    $0x2,%eax
  2ba:	cd 40                	int    $0x40
  2bc:	c3                   	ret    
 
 000002bd <wait>:
-SYSCALL(wait)
  2bd:	b8 03 00 00 00       	mov    $0x3,%eax
  2c2:	cd 40                	int    $0x40
  2c4:	c3                   	ret    
 
 000002c5 <pipe>:
-SYSCALL(pipe)
  2c5:	b8 04 00 00 00       	mov    $0x4,%eax
  2ca:	cd 40                	int    $0x40
  2cc:	c3                   	ret    
 
 000002cd <read>:
-SYSCALL(read)
  2cd:	b8 05 00 00 00       	mov    $0x5,%eax
  2d2:	cd 40                	int    $0x40
  2d4:	c3                   	ret    
 
 000002d5 <write>:
-SYSCALL(write)
  2d5:	b8 10 00 00 00       	mov    $0x10,%eax
  2da:	cd 40                	int    $0x40
  2dc:	c3                   	ret    
 
 000002dd <close>:
-SYSCALL(close)
  2dd:	b8 15 00 00 00       	mov    $0x15,%eax
  2e2:	cd 40                	int    $0x40
  2e4:	c3                   	ret    
 
 000002e5 <kill>:
-SYSCALL(kill)
  2e5:	b8 06 00 00 00       	mov    $0x6,%eax
  2ea:	cd 40                	int    $0x40
  2ec:	c3                   	ret    
 
 000002ed <exec>:
-SYSCALL(exec)
  2ed:	b8 07 00 00 00       	mov    $0x7,%eax
  2f2:	cd 40                	int    $0x40
  2f4:	c3                   	ret    
 
 000002f5 <open>:
-SYSCALL(open)
  2f5:	b8 0f 00 00 00       	mov    $0xf,%eax
  2fa:	cd 40                	int    $0x40
  2fc:	c3                   	ret    
 
 000002fd <mknod>:
-SYSCALL(mknod)
  2fd:	b8 11 00 00 00       	mov    $0x11,%eax
  302:	cd 40                	int    $0x40
  304:	c3                   	ret    
 
 00000305 <unlink>:
-SYSCALL(unlink)
  305:	b8 12 00 00 00       	mov    $0x12,%eax
  30a:	cd 40                	int    $0x40
  30c:	c3                   	ret    
 
 0000030d <fstat>:
-SYSCALL(fstat)
  30d:	b8 08 00 00 00       	mov    $0x8,%eax
  312:	cd 40                	int    $0x40
  314:	c3                   	ret    
 
 00000315 <link>:
-SYSCALL(link)
  315:	b8 13 00 00 00       	mov    $0x13,%eax
  31a:	cd 40                	int    $0x40
  31c:	c3                   	ret    
 
 0000031d <mkdir>:
-SYSCALL(mkdir)
  31d:	b8 14 00 00 00       	mov    $0x14,%eax
  322:	cd 40                	int    $0x40
  324:	c3                   	ret    
 
 00000325 <chdir>:
-SYSCALL(chdir)
  325:	b8 09 00 00 00       	mov    $0x9,%eax
  32a:	cd 40                	int    $0x40
  32c:	c3                   	ret    
 
 0000032d <dup>:
-SYSCALL(dup)
  32d:	b8 0a 00 00 00       	mov    $0xa,%eax
  332:	cd 40                	int    $0x40
  334:	c3                   	ret    
 
 00000335 <getpid>:
-SYSCALL(getpid)
  335:	b8 0b 00 00 00       	mov    $0xb,%eax
  33a:	cd 40                	int    $0x40
  33c:	c3                   	ret    
 
 0000033d <sbrk>:
-SYSCALL(sbrk)
  33d:	b8 0c 00 00 00       	mov    $0xc,%eax
  342:	cd 40                	int    $0x40
  344:	c3                   	ret    
 
 00000345 <sleep>:
-SYSCALL(sleep)
  345:	b8 0d 00 00 00       	mov    $0xd,%eax
  34a:	cd 40                	int    $0x40
  34c:	c3                   	ret    
 
 0000034d <uptime>:
-SYSCALL(uptime)
  34d:	b8 0e 00 00 00       	mov    $0xe,%eax
  352:	cd 40                	int    $0x40
  354:	c3                   	ret    

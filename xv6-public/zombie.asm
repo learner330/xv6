@@ -407,132 +407,106 @@ memmove(void *vdst, const void *vsrc, int n)
  24c:	c3                   	ret    
 
 0000024d <fork>:
-  name: \
-    movl $SYS_ ## name, %eax; \
-    int $T_SYSCALL; \
-    ret
-
-SYSCALL(fork)
  24d:	b8 01 00 00 00       	mov    $0x1,%eax
  252:	cd 40                	int    $0x40
  254:	c3                   	ret    
 
 00000255 <exit>:
-SYSCALL(exit)
  255:	b8 02 00 00 00       	mov    $0x2,%eax
  25a:	cd 40                	int    $0x40
  25c:	c3                   	ret    
 
 0000025d <wait>:
-SYSCALL(wait)
  25d:	b8 03 00 00 00       	mov    $0x3,%eax
  262:	cd 40                	int    $0x40
  264:	c3                   	ret    
 
 00000265 <pipe>:
-SYSCALL(pipe)
  265:	b8 04 00 00 00       	mov    $0x4,%eax
  26a:	cd 40                	int    $0x40
  26c:	c3                   	ret    
 
 0000026d <read>:
-SYSCALL(read)
  26d:	b8 05 00 00 00       	mov    $0x5,%eax
  272:	cd 40                	int    $0x40
  274:	c3                   	ret    
 
 00000275 <write>:
-SYSCALL(write)
  275:	b8 10 00 00 00       	mov    $0x10,%eax
  27a:	cd 40                	int    $0x40
  27c:	c3                   	ret    
 
 0000027d <close>:
-SYSCALL(close)
  27d:	b8 15 00 00 00       	mov    $0x15,%eax
  282:	cd 40                	int    $0x40
  284:	c3                   	ret    
 
 00000285 <kill>:
-SYSCALL(kill)
  285:	b8 06 00 00 00       	mov    $0x6,%eax
  28a:	cd 40                	int    $0x40
  28c:	c3                   	ret    
 
 0000028d <exec>:
-SYSCALL(exec)
  28d:	b8 07 00 00 00       	mov    $0x7,%eax
  292:	cd 40                	int    $0x40
  294:	c3                   	ret    
 
 00000295 <open>:
-SYSCALL(open)
  295:	b8 0f 00 00 00       	mov    $0xf,%eax
  29a:	cd 40                	int    $0x40
  29c:	c3                   	ret    
 
 0000029d <mknod>:
-SYSCALL(mknod)
  29d:	b8 11 00 00 00       	mov    $0x11,%eax
  2a2:	cd 40                	int    $0x40
  2a4:	c3                   	ret    
 
 000002a5 <unlink>:
-SYSCALL(unlink)
  2a5:	b8 12 00 00 00       	mov    $0x12,%eax
  2aa:	cd 40                	int    $0x40
  2ac:	c3                   	ret    
 
 000002ad <fstat>:
-SYSCALL(fstat)
  2ad:	b8 08 00 00 00       	mov    $0x8,%eax
  2b2:	cd 40                	int    $0x40
  2b4:	c3                   	ret    
 
 000002b5 <link>:
-SYSCALL(link)
  2b5:	b8 13 00 00 00       	mov    $0x13,%eax
  2ba:	cd 40                	int    $0x40
  2bc:	c3                   	ret    
 
 000002bd <mkdir>:
-SYSCALL(mkdir)
  2bd:	b8 14 00 00 00       	mov    $0x14,%eax
  2c2:	cd 40                	int    $0x40
  2c4:	c3                   	ret    
 
 000002c5 <chdir>:
-SYSCALL(chdir)
  2c5:	b8 09 00 00 00       	mov    $0x9,%eax
  2ca:	cd 40                	int    $0x40
  2cc:	c3                   	ret    
 
 000002cd <dup>:
-SYSCALL(dup)
  2cd:	b8 0a 00 00 00       	mov    $0xa,%eax
  2d2:	cd 40                	int    $0x40
  2d4:	c3                   	ret    
 
 000002d5 <getpid>:
-SYSCALL(getpid)
  2d5:	b8 0b 00 00 00       	mov    $0xb,%eax
  2da:	cd 40                	int    $0x40
  2dc:	c3                   	ret    
 
 000002dd <sbrk>:
-SYSCALL(sbrk)
  2dd:	b8 0c 00 00 00       	mov    $0xc,%eax
  2e2:	cd 40                	int    $0x40
  2e4:	c3                   	ret    
 
 000002e5 <sleep>:
-SYSCALL(sleep)
  2e5:	b8 0d 00 00 00       	mov    $0xd,%eax
  2ea:	cd 40                	int    $0x40
  2ec:	c3                   	ret    
 
 000002ed <uptime>:
-SYSCALL(uptime)
  2ed:	b8 0e 00 00 00       	mov    $0xe,%eax
  2f2:	cd 40                	int    $0x40
  2f4:	c3                   	ret    

@@ -11,6 +11,7 @@ if (date(&r)) {
 printf(2, "date failed\n");
 exit();
 }
-printf(1, "year%d-month%d day%d hour%d:minute%d:second%d\n", r.month, r.day, r.year, r.hour, r.minute, r.second);
+printf(1, "month%d-day%d year%d hour%d:minute%d:second%d\n", 
+r.month, r.day, r.year, r.hour, r.minute, r.second);
 exit();
 }
