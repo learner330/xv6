@@ -8,6 +8,8 @@
 #include "traps.h"
 #include "spinlock.h"
 
+int mappages(pde_t * pgdir,void * va,uint size,uint pa,int perm);
+
 // Interrupt descriptor table (shared by all CPUs).
 struct gatedesc idt[256];
 extern uint vectors[];  // in vectors.S: array of 256 entry pointers
@@ -86,12 +88,36 @@ trap(struct trapframe *tf)
               tf->trapno, cpuid(), tf->eip, rcr2());
       panic("trap");
     }
+
+ char *mem;
+  uint a;
+
+
+  a = PGROUNDDOWN(rcr2());
+  for(; a < myproc()->sz; a += PGSIZE){
+    mem = kalloc();
+    if(mem == 0){
+      cprintf("allocuvm out of memory\n");
+      exit();
+      
+    }
+    memset(mem, 0, PGSIZE);
+    if(mappages(myproc()->pgdir, (char*)a, PGSIZE, V2P(mem), PTE_W|PTE_U) < 0){
+      cprintf("allocuvm out of memory (2)\n");
+      kfree(mem);
+      exit();
+    }
+  }
+  
+
+
+
     // In user space, assume process misbehaved.
-    cprintf("pid %d %s: trap %d err %d on cpu %d "
-            "eip 0x%x addr 0x%x--kill proc\n",
-            myproc()->pid, myproc()->name, tf->trapno,
-            tf->err, cpuid(), tf->eip, rcr2());
-    myproc()->killed = 1;
+    // cprintf("pid %d %s: trap %d err %d on cpu %d "
+    //         "eip 0x%x addr 0x%x--kill proc\n",
+    //         myproc()->pid, myproc()->name, tf->trapno,
+    //         tf->err, cpuid(), tf->eip, rcr2());
+    // myproc()->killed = 1;
   }
 
   // Force process exit if it has been killed and is in user space.
