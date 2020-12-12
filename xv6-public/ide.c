@@ -109,6 +109,7 @@ ideintr(void)
   acquire(&idelock);
 
   if((b = idequeue) == 0){
+  
     release(&idelock);
     return;
   }
